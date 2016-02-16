@@ -9,16 +9,18 @@ public class ItemSlot : MonoBehaviour {
 	private SpriteRenderer currentSpriteRenderer;
 	private GameManager gm;
 	
-	public void Awake () {
-		gm = Hub.central.gm;
-	}
-	
 	// create a child object with a sprite renderer, and assign currentSpriteRenderer
 	public void Start () {
+		gm = Hub.central.gm;
+		
 		GameObject childSprite = new GameObject("slotSprite");
 		currentSpriteRenderer = childSprite.AddComponent<SpriteRenderer>();
 		childSprite.transform.SetParent(transform);
 		childSprite.transform.position = transform.position;
+	}
+	
+	public void Update () {
+		
 	}
 	
 	// place a new sprite corresponding to resourceType. if resourceType is -1, make the sprite invisible
@@ -41,12 +43,13 @@ public class ItemSlot : MonoBehaviour {
 	// tell game manager that this slot just had the mouse released over it
 	// via int : SetItemToSlot (int slot)
 	public void OnMouseUp () {
-		
+		Debug.Log("Got OnMouseUp() call from slot with ID " + slotID);
+		gm.SetItemToSlot (slotID);
 	}
 	
 	// tell game manager that this slot was clicked
 	// and stop displaying the sprite
 	public void OnMouseDown () {
-		
+		Hub.central.gm.ItemPickedUp(itemType);
 	}
 }

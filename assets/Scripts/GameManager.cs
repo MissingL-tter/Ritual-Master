@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public Sprite[] itemSprites;
 	
 	private CodeManager codeManager;
+	public int currentDraggedType = -1;
 
 	public void Start () {
 		codeManager = new CodeManager();
@@ -28,17 +29,31 @@ public class GameManager : MonoBehaviour {
 	// called when an item pool is clicked
 	// make sure to handle itemType = -1 (which means something was set up wrong)
 	public void ItemPickedUp (int itemType) {
+		if (itemType == -1) {
+			Debug.Log("ItemPickedUp() got -1! An item type is set up wrong");
+			return;
+		}
+		currentDraggedType = itemType;
 		
+		// create a new game object with DraggedItem
+		GameObject draggable = new GameObject("DraggableItem");
+		draggable.AddComponent<SpriteRenderer>().sprite = GetSprite(itemType);
+		draggable.AddComponent<DraggedItem>();
 	}
 	
 	// slots will call this when they get a MouseUp
 	// return int type : type of resource dropped
-	public int SetItemToSlot (int slot) {
-		return 0; // change this
+	public void SetItemToSlot (int slot) {
+		if (currentDraggedType == -1) {
+			return;
+		}
+		slots[slot].UpdateSprite(currentDraggedType);
+		
+		currentDraggedType = -1;
 	}
 	
 	// return the sprite with passed type
 	public Sprite GetSprite (int type) {
-		return null; // change this
+		return itemSprites[type];
 	}
 }
