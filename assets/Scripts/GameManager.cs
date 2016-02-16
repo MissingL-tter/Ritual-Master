@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 	
 	// public variables
+	public SoundController soundController;
 	
 	// vars to set in inspector
 	public ItemSlot[] slots;
@@ -31,7 +32,15 @@ public class GameManager : MonoBehaviour {
 			slots[4].itemType
 		};
 		int[] result = codeManager.EvaluateGuess(guess);
+		// result[0] is full, result[1] is partial
 		Debug.Log(""+ result[0] + " full and " + result[1] + " partial");
+		if (result[0] < slots.Length) {
+			// play failure sound
+			//soundController.PlayFailureSound();
+		}
+		else {
+			// play success sound
+		}
 	}
 	
 	// called when an item pool is clicked
@@ -47,6 +56,9 @@ public class GameManager : MonoBehaviour {
 		GameObject draggable = new GameObject("DraggableItem");
 		draggable.AddComponent<SpriteRenderer>().sprite = GetSprite(itemType);
 		draggable.AddComponent<DraggedItem>();
+		
+		// play picked up sound
+		//soundController.PlayPickUp();
 	}
 	
 	// slots will call this when they get a MouseUp
@@ -58,6 +70,9 @@ public class GameManager : MonoBehaviour {
 		slots[slot].UpdateSprite(currentDraggedType);
 		
 		currentDraggedType = -1;
+		
+		// play set sound
+		//soundController.PlayPlace();
 	}
 	
 	// return the sprite with passed type
