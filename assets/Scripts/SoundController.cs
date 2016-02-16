@@ -19,16 +19,16 @@ public class SoundController : MonoBehaviour {
 	}
 	
 	// Picking up and Placing Pieces within MasterMind Puzzle
-	public void playPickUpResourceSound () {
+	public void PlayPickUpResourceSound () {
 		audioSource.PlayOneShot(piecePickUpSound, 0.65f);
 	}
 	
-	public void playPlaceResourceSound () {
+	public void PlayPlaceResourceSound () {
         audioSource.PlayOneShot(piecePlaceSound, 0.65f);
     }
     
     // Fail/Win puzzle
-    public void playPuzzleFailureSound () {
+    public void PlayPuzzleFailureSound () {
 		audioSource.PlayOneShot(puzzleFailureSound, 0.6f);
 	}
 	

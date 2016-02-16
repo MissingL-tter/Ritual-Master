@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log(""+ result[0] + " full and " + result[1] + " partial");
 		if (result[0] < slots.Length) {
 			// play failure sound
-			soundController.PlayFailureSound();
+			soundController.PlayPuzzleFailureSound();
 		}
 		else {
 			// play success sound
