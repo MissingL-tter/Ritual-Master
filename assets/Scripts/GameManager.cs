@@ -23,7 +23,15 @@ public class GameManager : MonoBehaviour {
 	
 	// called when the user attempts the ritual
 	public void AttemptRitual () {
-		
+		int[] guess = new int[] {
+			slots[0].itemType,
+			slots[1].itemType,
+			slots[2].itemType,
+			slots[3].itemType,
+			slots[4].itemType
+		};
+		int[] result = codeManager.EvaluateGuess(guess);
+		Debug.Log(""+ result[0] + " full and " + result[1] + " partial");
 	}
 	
 	// called when an item pool is clicked

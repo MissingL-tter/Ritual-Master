@@ -20,15 +20,9 @@ public class ItemSlot : MonoBehaviour {
 		currentSpriteRenderer.sortingLayerID = SortingLayer.NameToID("Props-foreground");
 	}
 	
-	public void Update () {
-		// replace OnMouseUp() with hacky raycast
-		if (Input.GetMouseButtonUp(0)) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit2D hit = Physics2D.GetRayIntersection (ray);
-			if (hit.transform == transform) {
-				gm.SetItemToSlot (slotID);
-			}
-		}
+	// just a wrapper
+	public void RemoveSprite () {
+		UpdateSprite(-1);
 	}
 	
 	// place a new sprite corresponding to resourceType. if resourceType is -1, make the sprite invisible
@@ -50,14 +44,16 @@ public class ItemSlot : MonoBehaviour {
 	
 	// tell game manager that this slot just had the mouse released over it
 	// via int : SetItemToSlot (int slot)
-	public void OnMouseUp () {
-		Debug.Log("Got OnMouseUp() call from slot with ID " + slotID);
-		//gm.SetItemToSlot (slotID);
+	public void OnMouseOver () {
+		if (Input.GetMouseButtonUp(0)) {
+			gm.SetItemToSlot (slotID);
+		}
 	}
 	
 	// tell game manager that this slot was clicked
 	// and stop displaying the sprite
 	public void OnMouseDown () {
 		Hub.central.gm.ItemPickedUp(itemType);
+		RemoveSprite();
 	}
 }
