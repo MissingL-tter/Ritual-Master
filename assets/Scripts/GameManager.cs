@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
 	public void Start () {
 		codeManager = new CodeManager();
 		codeManager.GenerateCode();
+		for (int i=0;i<slots.Length;i++) {
+			slots[i].slotID = i;
+		}
 	}
 	
 	// called when the user attempts the ritual
