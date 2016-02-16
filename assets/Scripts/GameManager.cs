@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log(""+ result[0] + " full and " + result[1] + " partial");
 		if (result[0] < slots.Length) {
 			// play failure sound
-			//soundController.PlayFailureSound();
+			soundController.PlayFailureSound();
 		}
 		else {
 			// play success sound
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
 		draggable.AddComponent<DraggedItem>();
 		
 		// play picked up sound
-		//soundController.PlayPickUpResourceSound();
+		soundController.PlayPickUpResourceSound();
 	}
 	
 	// slots will call this when they get a MouseUp
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
 		currentDraggedType = -1;
 		
 		// play set sound
-		//soundController.PlayPlaceResourceSound();
+		soundController.PlayPlaceResourceSound();
 	}
 	
 	// return the sprite with passed type
