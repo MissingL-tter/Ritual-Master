@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
 		draggable.AddComponent<DraggedItem>();
 		
 		// play picked up sound
-		//soundController.PlayPickUp();
+		//soundController.PlayPickUpResourceSound();
 	}
 	
 	// slots will call this when they get a MouseUp
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
 		currentDraggedType = -1;
 		
 		// play set sound
-		//soundController.PlayPlace();
+		//soundController.PlayPlaceResourceSound();
 	}
 	
 	// return the sprite with passed type
