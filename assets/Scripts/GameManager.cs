@@ -61,6 +61,15 @@ public class GameManager : MonoBehaviour {
 		soundController.PlayPickUpResourceSound();
 	}
 	
+	//same as above, but overloaded with an arg for slot checking
+	public void ItemPickedUp (int itemType, int slot) {
+		if (slots[slot].GetComponent<SpriteRenderer>().sprite.name == "socket" ) {
+			Debug.Log("Can't pick up an item from an empty slot!");
+			return;
+		}
+		ItemPickedUp(itemType);
+	}
+	
 	// slots will call this when they get a MouseUp
 	// return int type : type of resource dropped
 	public void SetItemToSlot (int slot) {
