@@ -6,9 +6,9 @@ public class ItemSlot : MonoBehaviour {
 	public int itemType = -1;
 	public int slotID = -1;
 	
-	private SpriteRenderer currentSpriteRenderer;
 	public GameObject childSprite;
-	private GameObject emptySprite;
+	public SpriteRenderer childSpriteRenderer;
+	
 	private GameManager gm;
 	
 	// create a child object with a sprite renderer, and assign currentSpriteRenderer
@@ -16,10 +16,10 @@ public class ItemSlot : MonoBehaviour {
 		gm = Hub.central.gm;
 		
 		childSprite = new GameObject("slotSprite");
-		currentSpriteRenderer = childSprite.AddComponent<SpriteRenderer>();
+		childSpriteRenderer = childSprite.AddComponent<SpriteRenderer>();
 		childSprite.transform.SetParent(transform);
 		childSprite.transform.position = transform.position;
-		currentSpriteRenderer.sortingLayerID = SortingLayer.NameToID("Props-foreground");
+		childSpriteRenderer.sortingLayerID = SortingLayer.NameToID("Props-foreground");
 	}
 	
 	// just a wrapper
@@ -30,12 +30,12 @@ public class ItemSlot : MonoBehaviour {
 	// place a new sprite corresponding to resourceType. if resourceType is -1, make the sprite invisible
 	public void UpdateSprite () {
 		if (itemType >= 0) {
-			currentSpriteRenderer.enabled = true;
-			currentSpriteRenderer.sprite = gm.GetSprite(itemType);
+			childSpriteRenderer.enabled = true;
+			childSpriteRenderer.sprite = gm.GetSprite(itemType);
 		}
 		else {
 			childSprite.GetComponent<SpriteRenderer>().sprite = null;
-			currentSpriteRenderer.enabled = false;
+			childSpriteRenderer.enabled = false;
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class ItemSlot : MonoBehaviour {
 	// tell game manager that this slot was clicked
 	// and stop displaying the sprite
 	public void OnMouseDown () {
-		gm.ItemPickedUp(itemType, slotID);
+		gm.ItemPickedUp(itemType);
 		RemoveSprite();
 	}
 }

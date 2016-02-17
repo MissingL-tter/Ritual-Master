@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
 	// make sure to handle itemType = -1 (which means something was set up wrong)
 	public void ItemPickedUp (int itemType) {
 		if (itemType == -1) {
-			Debug.Log("ItemPickedUp() got -1! An item type is set up wrong");
+			Debug.Log("ItemPickedUp() got -1! Can't pick up an item from an empty slot!");
 			return;
 		}
 		currentDraggedType = itemType;
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
 	
 	//same as above, but overloaded with an arg for slot checking
 	public void ItemPickedUp (int itemType, int slot) {
-		if (!slots[slot].childSprite.GetComponent<SpriteRenderer>().sprite) {
+		if (!slots[slot].childSpriteRenderer.sprite) {
 			Debug.Log("Can't pick up an item from an empty slot!");
 			currentDraggedType = -1;
 			return;
