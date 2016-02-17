@@ -2,14 +2,10 @@
 using System.Collections;
 
 public class HistoryManager : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
+	// add a history item for a guess to the chat window
+	public void AddHistoryItem (int full, int partial) {
+		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
