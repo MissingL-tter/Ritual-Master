@@ -63,8 +63,9 @@ public class GameManager : MonoBehaviour {
 	
 	//same as above, but overloaded with an arg for slot checking
 	public void ItemPickedUp (int itemType, int slot) {
-		if (slots[slot].GetComponent<SpriteRenderer>().sprite.name == "socket" ) {
+		if (!slots[slot].childSprite.GetComponent<SpriteRenderer>().sprite) {
 			Debug.Log("Can't pick up an item from an empty slot!");
+			currentDraggedType = -1;
 			return;
 		}
 		ItemPickedUp(itemType);

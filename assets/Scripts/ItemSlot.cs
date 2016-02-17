@@ -7,13 +7,15 @@ public class ItemSlot : MonoBehaviour {
 	public int slotID = -1;
 	
 	private SpriteRenderer currentSpriteRenderer;
+	public GameObject childSprite;
+	private GameObject emptySprite;
 	private GameManager gm;
 	
 	// create a child object with a sprite renderer, and assign currentSpriteRenderer
 	public void Start () {
 		gm = Hub.central.gm;
 		
-		GameObject childSprite = new GameObject("slotSprite");
+		childSprite = new GameObject("slotSprite");
 		currentSpriteRenderer = childSprite.AddComponent<SpriteRenderer>();
 		childSprite.transform.SetParent(transform);
 		childSprite.transform.position = transform.position;
@@ -32,6 +34,7 @@ public class ItemSlot : MonoBehaviour {
 			currentSpriteRenderer.sprite = gm.GetSprite(itemType);
 		}
 		else {
+			childSprite.GetComponent<SpriteRenderer>().sprite = null;
 			currentSpriteRenderer.enabled = false;
 		}
 	}
