@@ -31,6 +31,16 @@ public class GameManager : MonoBehaviour {
 			slots[3].itemType,
 			slots[4].itemType
 		};
+		
+		// short circuit if not all slots are full
+		foreach (ItemSlot i in slots) {
+			if (i.itemType < 0) {
+				Debug.Log("Not all slots filled!");
+				// inform the user that all slots must be filled somehow
+				return;
+			}
+		}
+		
 		int[] result = codeManager.EvaluateGuess(guess);
 		// result[0] is full, result[1] is partial
 		Debug.Log(""+ result[0] + " full and " + result[1] + " partial");
