@@ -56,7 +56,18 @@ public class ItemSlot : MonoBehaviour {
 	// tell game manager that this slot was clicked
 	// and stop displaying the sprite
 	public void OnMouseDown () {
-		gm.ItemPickedUp(itemType,slotID);
+		if (IsEmpty()) {
+			Debug.Log("Can't pick up an item from an empty slot");
+			return;
+		}
+		gm.ItemPickedUp(itemType);
 		RemoveSprite();
 	}
+	
+	// returns true if empty, false otherwise
+	public bool IsEmpty () {
+		if (!childSpriteRenderer.sprite) return true;
+		else return false;
+	}
+	
 }
