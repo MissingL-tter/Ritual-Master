@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
 	public void ItemPickedUp (int itemType, int slot) {
 		if (!slots[slot].childSpriteRenderer.sprite) {
 			Debug.Log("Can't pick up an item from an empty slot!");
-			currentDraggedType = -1;
+			//currentDraggedType = -1;
 			return;
 		}
 		ItemPickedUp(itemType);

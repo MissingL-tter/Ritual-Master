@@ -56,7 +56,7 @@ public class ItemSlot : MonoBehaviour {
 	// tell game manager that this slot was clicked
 	// and stop displaying the sprite
 	public void OnMouseDown () {
-		gm.ItemPickedUp(itemType);
+		gm.ItemPickedUp(itemType,slotID);
 		RemoveSprite();
 	}
 }
