@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour {
 		};
 		
 		// short circuit if not all slots are full
-		foreach (ItemSlot i in slots) {
-			if (i.itemType < 0) {
+		foreach (ItemSlot s in slots) {
+			if (s.IsEmpty()) {
 				Debug.Log("Not all slots filled!");
 				// inform the user that all slots must be filled somehow
 				return;
@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour {
 	// called when an item pool is clicked
 	// make sure to handle itemType = -1 (which means something was set up wrong)
 	public void ItemPickedUp (int itemType) {
-		if (itemType == -1) {
-			Debug.Log("ItemPickedUp() got -1! Can't pick up an item from an empty slot!");
+		if (itemType < 0) {
+			Debug.Log("ItemPickedUp() got a number less than 0! Not a valid resource");
 			return;
 		}
 		currentDraggedType = itemType;
@@ -71,20 +71,10 @@ public class GameManager : MonoBehaviour {
 		soundController.PlayPickUpResourceSound();
 	}
 	
-	//same as above, but overloaded with an arg for slot checking
-	public void ItemPickedUp (int itemType, int slot) {
-		if (!slots[slot].childSpriteRenderer.sprite) {
-			Debug.Log("Can't pick up an item from an empty slot!");
-			//currentDraggedType = -1;
-			return;
-		}
-		ItemPickedUp(itemType);
-	}
-	
 	// slots will call this when they get a MouseUp
 	// return int type : type of resource dropped
 	public void SetItemToSlot (int slot) {
-		if (currentDraggedType == -1) {
+		if (currentDraggedType < 0) {
 			return;
 		}
 		slots[slot].UpdateSprite(currentDraggedType);

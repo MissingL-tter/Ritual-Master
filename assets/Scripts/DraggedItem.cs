@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DraggedItem : MonoBehaviour {
 	
+	public int originalSlot = -1;
+	
 	public void Start () {
 		gameObject.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Props-foreground");
 	}

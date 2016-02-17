@@ -21,6 +21,7 @@ public class ItemPool : MonoBehaviour {
 	
 	// tell game manager that this pool was clicked
 	// via ItemPickedUp(int type)
+	// pools are never empty
 	public void OnMouseDown () {
 		Hub.central.gm.ItemPickedUp(itemType);
 	}
