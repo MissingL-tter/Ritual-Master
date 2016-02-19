@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public Sprite[] itemSprites;
 	
 	private CodeManager codeManager;
+	public HistoryManager historyManager;
 	public int currentDraggedType = -1;
 
 	public void Start () {
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour {
 		if (result[0] < slots.Length) {
 			// play failure sound
 			soundController.PlayPuzzleFailureSound();
+			//CreateHistoryItem();
+			historyManager.AddHistoryItem();
 		}
 		else {
 			// play success sound
