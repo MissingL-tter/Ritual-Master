@@ -17,7 +17,6 @@ public class DraggedItem : MonoBehaviour {
 		
 		// when the mouse is released, self destruct. ItemSlot will notify gm for us
 		if (Input.GetMouseButtonUp(0)) {
-			Hub.central.gm.currentDraggedType = -1;
 			Destroy(gameObject);
 		}
 	}

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
 	private CodeManager codeManager;
 	public HistoryManager historyManager;
 	public int currentDraggedType = -1;
+	
+	private DraggedItem draggedItem;
 
 	public void Start () {
 		codeManager = new CodeManager();
@@ -56,9 +58,16 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 	
+	// overload for calling without a slot id
+	public void ItemPickedUp (int itemType) {
+		ItemPickedUp(itemType,-1);
+	}
+	
 	// called when an item pool is clicked
 	// make sure to handle itemType = -1 (which means something was set up wrong)
-	public void ItemPickedUp (int itemType) {
+	// can be called directly by an ItemSlot or indirectly by everything else via ItemPickedUp(itemType)
+	// returns the DraggedItem that was created
+	public void ItemPickedUp (int itemType, int slotID) {
 		if (itemType < 0) {
 			Debug.Log("ItemPickedUp() got a number less than 0! Not a valid resource");
 			return;
@@ -68,7 +77,8 @@ public class GameManager : MonoBehaviour {
 		// create a new game object with DraggedItem
 		GameObject draggable = new GameObject("DraggableItem");
 		draggable.AddComponent<SpriteRenderer>().sprite = GetSprite(itemType);
-		draggable.AddComponent<DraggedItem>();
+		draggedItem = draggable.AddComponent<DraggedItem>();
+		draggedItem.originalSlot = slotID;
 		
 		// play picked up sound
 		soundController.PlayPickUpResourceSound();
@@ -77,8 +87,12 @@ public class GameManager : MonoBehaviour {
 	// slots will call this when they get a MouseUp
 	// return int type : type of resource dropped
 	public void SetItemToSlot (int slot) {
-		if (currentDraggedType < 0) {
+		if (currentDraggedType == -1) {
+			Debug.Log("SetItemToSlot was called with currentDraggedType = -1!");
 			return;
+		}
+		if (draggedItem && draggedItem.originalSlot != -1) {
+			slots[draggedItem.originalSlot].UpdateSprite(slots[slot].itemType);
 		}
 		slots[slot].UpdateSprite(currentDraggedType);
 		
@@ -86,6 +100,9 @@ public class GameManager : MonoBehaviour {
 		
 		// play set sound
 		soundController.PlayPlaceResourceSound();
+		
+		Destroy(draggedItem.gameObject);
+		draggedItem = null;
 	}
 	
 	// return the sprite with passed type

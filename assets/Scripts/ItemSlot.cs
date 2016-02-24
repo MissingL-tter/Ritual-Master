@@ -60,7 +60,7 @@ public class ItemSlot : MonoBehaviour {
 			Debug.Log("Can't pick up an item from an empty slot");
 			return;
 		}
-		gm.ItemPickedUp(itemType);
+		gm.ItemPickedUp(itemType,slotID);
 		RemoveSprite();
 	}
 	
