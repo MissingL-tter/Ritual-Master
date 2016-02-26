@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour {
 				// inform the user that all slots must be filled somehow
 				return;
 			}
+			// we already checked if slot was empty, so now we can empty it
+			s.RemoveSprite();
 		}
 		
 		int[] result = codeManager.EvaluateGuess(guess);
