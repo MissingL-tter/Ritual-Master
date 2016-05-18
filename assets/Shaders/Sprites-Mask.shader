@@ -9,7 +9,7 @@ Shader "Sprites/Mask"
 	SubShader
 	{
 		Tags { 
-			"Queue"="Transparent+2"
+			"Queue"="Transparent+1"
 		}
 		ColorMask 0
 		ZWrite Off

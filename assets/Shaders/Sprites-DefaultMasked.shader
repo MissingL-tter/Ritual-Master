@@ -11,7 +11,7 @@ Shader "Sprites/DefaultMasked"
 	{
 		Tags
 		{ 
-			"Queue"="Transparent+3" 
+			"Queue"="Transparent+2" 
 			"IgnoreProjector"="True" 
 			"RenderType"="Transparent" 
 			"PreviewType"="Plane"
