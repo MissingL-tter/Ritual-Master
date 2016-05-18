@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 	
 	private CodeManager codeManager;
 	public HistoryManager historyManager;
+	[System.NonSerialized]
 	public int currentDraggedType = -1;
 	
 	private DraggedItem draggedItem;
