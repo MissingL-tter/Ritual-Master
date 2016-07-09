@@ -1,29 +1,21 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Ritual Master development repo. Pretty obvious.
+[Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### What is this repository for? ###
+### Setup ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Latest version of Unity
+* Geany (plus Unity.cs.tags) recommended
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Modularity pls
+* Functions and classes are CapitalCamel
+* Variables are lowercaseCamel
+* Functions should be short and single-function and all that
+* NO SPAGHETTI
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* olafalo is probably the only one reading this so just talk to him
