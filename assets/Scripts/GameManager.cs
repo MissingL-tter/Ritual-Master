@@ -4,12 +4,16 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 	
 	// public variables
+	// doesn't need to be serialized because the sound manager gives this script a hook at runtime
+	[System.NonSerialized]
 	public SoundController soundController;
 	
 	// vars to set in inspector
 	public ItemSlot[] slots;
 	public ItemPool[] pools;
 	public Sprite[] itemSprites;
+	// keep items in slots so you don't have to fill slots each time
+	public bool removeItemsOnAttempt = true;
 	
 	private CodeManager codeManager;
 	public HistoryManager historyManager;
@@ -44,7 +48,7 @@ public class GameManager : MonoBehaviour {
 				return;
 			}
 			// we already checked if slot was empty, so now we can empty it
-			s.RemoveSprite();
+			if (removeItemsOnAttempt) s.RemoveSprite();
 		}
 		
 		int[] result = codeManager.EvaluateGuess(guess);

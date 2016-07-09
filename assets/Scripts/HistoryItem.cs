@@ -5,6 +5,7 @@ using System.Collections;
 public class HistoryItem : MonoBehaviour {
 
 	public GameManager gm;
+	public Material spriteMat;
 	public Transform graphicCenter;
 	public Text responseText;
 	public float starRadius = 0.5f;
@@ -31,6 +32,7 @@ public class HistoryItem : MonoBehaviour {
 			// add appropriate sprite based on guess[i]
 			GameObject go = new GameObject("HistoryGraphicElement");
 			SpriteRenderer spriteTemp = go.AddComponent<SpriteRenderer>();
+			spriteTemp.material = spriteMat;
 			spriteTemp.sprite = gm.GetSprite(guess[i]);
 			spriteTemp.sortingLayerID = SortingLayer.NameToID("Props-foreground");
 			go.transform.position = graphicCenter.position + instPosition;
