@@ -11,13 +11,15 @@ public class GameManager : MonoBehaviour {
 	// vars to set in inspector
 	public int numSlots = 5;
 	public int numTypes = 3;
-	[System.NonSerialized]
+	//[System.NonSerialized]
 	public ItemSlot[] slots;
-	[System.NonSerialized]
+	//[System.NonSerialized]
 	public ItemPool[] pools;
 	public Sprite[] itemSprites;
 	// keep items in slots so you don't have to fill slots each time
 	public bool removeItemsOnAttempt = true;
+	// for compatibility with old scene
+	public bool autogenCompatable = true;
 	
 	// pointers to other objects
 	private CodeManager codeManager;
@@ -35,9 +37,17 @@ public class GameManager : MonoBehaviour {
 	public void Start () {
 		codeManager = new CodeManager();
 		codeManager.GenerateCode();
-		sceneGenerator.LoadAll(numSlots,numTypes);
-		slots = sceneGenerator.slots;
-		pools = sceneGenerator.pools;
+		if (autogenCompatable) {
+			sceneGenerator.LoadAll(numSlots,numTypes);
+			slots = sceneGenerator.slots;
+			pools = sceneGenerator.pools;
+		}
+		else {
+			for (int i=0;i<slots.Length;i++) {
+				slots[i].slotID = i;
+			}
+
+		}
 	}
 	
 	// called when the user attempts the ritual
