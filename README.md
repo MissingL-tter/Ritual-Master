@@ -7,7 +7,7 @@ Ritual Master development repo. Pretty obvious.
 ### Setup ###
 
 * Latest version of Unity
-* Geany (plus Unity.cs.tags) recommended
+* Geany (plus [Unity.cs.tags](https://github.com/DThought/geany-tags/tree/master/unity)) recommended
 
 ### Contribution guidelines ###
 
