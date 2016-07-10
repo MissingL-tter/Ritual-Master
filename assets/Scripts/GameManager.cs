@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour {
 	public SoundController soundController;
 	
 	// vars to set in inspector
+	public int numSlots = 5;
+	public int numTypes = 3;
+	[System.NonSerialized]
 	public ItemSlot[] slots;
+	[System.NonSerialized]
 	public ItemPool[] pools;
 	public Sprite[] itemSprites;
 	// keep items in slots so you don't have to fill slots each time
@@ -18,6 +22,7 @@ public class GameManager : MonoBehaviour {
 	// pointers to other objects
 	private CodeManager codeManager;
 	public HistoryManager historyManager;
+	public SceneGenerator sceneGenerator;
 	
 	// tracks the type of item that's being dragged. -1 if nothing, [0..ItemPool.length-1] otherwise
 	[System.NonSerialized]
@@ -26,13 +31,13 @@ public class GameManager : MonoBehaviour {
 	// pointer to currently dragged item
 	private DraggedItem draggedItem;
 	
-	// generate code and set up slot IDs
+	// generate code and create the scene
 	public void Start () {
 		codeManager = new CodeManager();
 		codeManager.GenerateCode();
-		for (int i=0;i<slots.Length;i++) {
-			slots[i].slotID = i;
-		}
+		sceneGenerator.LoadAll(numSlots,numTypes);
+		slots = sceneGenerator.slots;
+		pools = sceneGenerator.pools;
 	}
 	
 	// called when the user attempts the ritual
