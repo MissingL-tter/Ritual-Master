@@ -3,6 +3,9 @@ using System.Collections;
 
 public class DraggedItem : MonoBehaviour {
 	
+	// an item which is being dragged
+	// autonomous, and self-destructs
+	
 	public int originalSlot = -1;
 	
 	public void Start () {

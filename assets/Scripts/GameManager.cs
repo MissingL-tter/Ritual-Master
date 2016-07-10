@@ -15,13 +15,18 @@ public class GameManager : MonoBehaviour {
 	// keep items in slots so you don't have to fill slots each time
 	public bool removeItemsOnAttempt = true;
 	
+	// pointers to other objects
 	private CodeManager codeManager;
 	public HistoryManager historyManager;
+	
+	// tracks the type of item that's being dragged. -1 if nothing, [0..ItemPool.length-1] otherwise
 	[System.NonSerialized]
 	public int currentDraggedType = -1;
 	
+	// pointer to currently dragged item
 	private DraggedItem draggedItem;
-
+	
+	// generate code and set up slot IDs
 	public void Start () {
 		codeManager = new CodeManager();
 		codeManager.GenerateCode();
@@ -65,7 +70,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 	
-	// overload for calling without a slot id
+	// overload for calling ItemPickedUp without a slot id
 	public void ItemPickedUp (int itemType) {
 		ItemPickedUp(itemType,-1);
 	}
@@ -82,7 +87,7 @@ public class GameManager : MonoBehaviour {
 		currentDraggedType = itemType;
 		
 		// create a new game object with DraggedItem
-		GameObject draggable = new GameObject("DraggableItem");
+		GameObject draggable = new GameObject("DraggedItem");
 		draggable.AddComponent<SpriteRenderer>().sprite = GetSprite(itemType);
 		draggedItem = draggable.AddComponent<DraggedItem>();
 		draggedItem.originalSlot = slotID;
@@ -91,8 +96,7 @@ public class GameManager : MonoBehaviour {
 		soundController.PlayPickUpResourceSound();
 	}
 	
-	// slots will call this when they get a MouseUp
-	// return int type : type of resource dropped
+	// slots will call this when they get a MouseUp=
 	public void SetItemToSlot (int slot) {
 		if (currentDraggedType == -1) {
 			Debug.Log("SetItemToSlot was called with currentDraggedType = -1!");
@@ -112,7 +116,7 @@ public class GameManager : MonoBehaviour {
 		draggedItem = null;
 	}
 	
-	// return the sprite with passed type
+	// return the sprite for passed type
 	public Sprite GetSprite (int type) {
 		return itemSprites[type];
 	}
