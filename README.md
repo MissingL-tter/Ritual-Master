@@ -8,6 +8,7 @@ Ritual Master development repo. Pretty obvious.
 
 * Latest version of Unity
 * Geany (plus [Unity.cs.tags](https://github.com/DThought/geany-tags/tree/master/unity)) recommended
+* If you decided to be a cool guy like olaf and switch to Linux, GitKraken is a good client to use
 
 ### Contribution guidelines ###
 
