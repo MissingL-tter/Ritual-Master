@@ -57,7 +57,7 @@ public class ItemSlot : MonoBehaviour {
 	// and stop displaying the sprite
 	public void OnMouseDown () {
 		if (IsEmpty()) {
-			Debug.Log("Can't pick up an item from an empty slot");
+			Trace.Msg("Can't pick up an item from an empty slot");
 			return;
 		}
 		gm.ItemPickedUp(itemType,slotID);
