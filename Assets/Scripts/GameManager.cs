@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour {
 	
 	// pointers to other objects
 	private CodeManager codeManager;
-	public HistoryManager historyManager;
+	public HistoryV2 historyManager;
 	public SceneGenerator sceneGenerator;
 	
 	// tracks the type of item that's being dragged. -1 if nothing, [0..ItemPool.length-1] otherwise
-	[System.NonSerialized]
+	//[System.NonSerialized]
 	public int currentDraggedType = -1;
 	
 	// pointer to currently dragged item
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
 		// short circuit if not all slots are full
 		foreach (ItemSlot s in slots) {
 			if (s.IsEmpty()) {
-				Debug.Log("Not all slots filled!");
+				Trace.Msg("Not all slots filled!");
 				// inform the user that all slots must be filled somehow
 				return;
 			}
@@ -73,12 +73,12 @@ public class GameManager : MonoBehaviour {
 		
 		int[] result = codeManager.EvaluateGuess(guess);
 		// result[0] is full, result[1] is partial
-		Debug.Log(""+ result[0] + " full and " + result[1] + " partial");
+		Trace.Msg(""+ result[0] + " full and " + result[1] + " partial");
 		if (result[0] < slots.Length) {
 			// play failure sound
 			soundController.PlayPuzzleFailureSound();
 			//CreateHistoryItem();
-			historyManager.AddHistoryItem();
+			historyManager.AddHistoryItem(guess, result);
 		}
 		else {
 			// play success sound
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour {
 	// returns the DraggedItem that was created
 	public void ItemPickedUp (int itemType, int slotID) {
 		if (itemType < 0) {
-			Debug.Log("ItemPickedUp() got a number less than 0! Not a valid resource");
+			Trace.Msg("ItemPickedUp() got a number less than 0! Not a valid resource");
 			return;
 		}
 		currentDraggedType = itemType;
@@ -114,7 +114,12 @@ public class GameManager : MonoBehaviour {
 	// slots will call this when they get a MouseUp=
 	public void SetItemToSlot (int slot) {
 		if (currentDraggedType == -1) {
-			Debug.Log("SetItemToSlot was called with currentDraggedType = -1!");
+			Trace.Msg("SetItemToSlot was called with currentDraggedType = -1!");
+			return;
+		}
+		if (!draggedItem) {
+			Trace.Msg ("SetItemToSlot was called with a null draggedItem!");
+			currentDraggedType = -1; // i'm sorry
 			return;
 		}
 		if (draggedItem && draggedItem.originalSlot != -1) {

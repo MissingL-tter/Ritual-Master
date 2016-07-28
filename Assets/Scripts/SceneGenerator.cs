@@ -20,11 +20,12 @@ public class SceneGenerator : MonoBehaviour {
 	// textures and sprites
 	public Sprite itemSlotSprite;
 	public Sprite pentaSprite;
+	public Sprite historyBoxBG;
 	public Sprite temp;
 	
 	// prefabs
 	
-	// in-scene references
+	// references
 	GameObject histBox;
 	GameObject puzzleCircle;
 	GameObject[] itemPool;
@@ -50,8 +51,8 @@ public class SceneGenerator : MonoBehaviour {
 		pools = new ItemPool[numTypes];
 		
 		// create history box placeholder, and set position and scale
-		GameObject histBox = new GameObject("History Box");
-		histBox.AddComponent<SpriteRenderer>().sprite = temp;
+		GameObject histBox = new GameObject("HistoryWindow");
+		histBox.AddComponent<SpriteRenderer>().sprite = historyBoxBG;
 		Vector3 newScale = new Vector3(
 			(leftSideHorizontalPercentage - (2*historyBoxSidePadding)) * w,
 			(1 - historyBoxTopPadding - historyBoxBottomPadding) * h,
@@ -62,6 +63,7 @@ public class SceneGenerator : MonoBehaviour {
 			1);
 		histBox.transform.position = newPos;
 		histBox.transform.localScale = newScale;
+		histBox.AddComponent<HistoryV2> ().Setup ();
 		
 		// create the outline of the puzzle, set position and scale
 		// sorting layer: semi-background

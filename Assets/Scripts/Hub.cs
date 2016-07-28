@@ -21,7 +21,7 @@ public class Hub : MonoBehaviour {
 		if (!gm) {
 			gm = gameObject.GetComponent<GameManager>();
 			if (!gm) {
-				Debug.Log("Hub found no game manager!");
+				Trace.Msg("Hub found no game manager!");
 			}
 		}
 	}
