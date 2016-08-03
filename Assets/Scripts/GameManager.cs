@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 	private CodeManager codeManager;
 	public HistoryV2 historyManager;
 	public SceneGenerator sceneGenerator;
+	public HistoryPane histPane;
 	
 	// tracks the type of item that's being dragged. -1 if nothing, [0..ItemPool.length-1] otherwise
 	//[System.NonSerialized]
