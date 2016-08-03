@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour {
 	// vars to set in inspector
 	public int numSlots = 5;
 	public int numTypes = 3;
-	//[System.NonSerialized]
+	[System.NonSerialized]
 	public ItemSlot[] slots;
-	//[System.NonSerialized]
+	[System.NonSerialized]
 	public ItemPool[] pools;
 	public Sprite[] itemSprites;
 	// keep items in slots so you don't have to fill slots each time
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 	// generate code and create the scene
 	public void Start () {
 		codeManager = new CodeManager();
-		codeManager.GenerateCode();
+		codeManager.GenerateCode(numSlots, numTypes);
 		if (autogenCompatable) {
 			sceneGenerator.LoadAll(numSlots,numTypes);
 			slots = sceneGenerator.slots;
@@ -49,16 +49,13 @@ public class GameManager : MonoBehaviour {
 
 		}
 	}
-	
+
 	// called when the user attempts the ritual
 	public void AttemptRitual () {
-		int[] guess = new int[] {
-			slots[0].itemType,
-			slots[1].itemType,
-			slots[2].itemType,
-			slots[3].itemType,
-			slots[4].itemType
-		};
+		int[] guess = new int[numSlots];
+		for (int i = 0; i < numSlots; i++) {
+			guess [i] = slots [i].itemType;
+		}
 		
 		// short circuit if not all slots are full
 		foreach (ItemSlot s in slots) {
@@ -118,6 +115,9 @@ public class GameManager : MonoBehaviour {
 			return;
 		}
 		if (!draggedItem) {
+			// this fixes a bug where you drag an item onto a slot, then
+			// pick it back up and release it without hovering over anything
+			// this would cause the item to reappear in the slot and throw an error
 			Trace.Msg ("SetItemToSlot was called with a null draggedItem!");
 			currentDraggedType = -1; // i'm sorry
 			return;

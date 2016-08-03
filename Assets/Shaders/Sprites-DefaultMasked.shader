@@ -26,7 +26,7 @@ Shader "Sprites/DefaultMasked"
 		Pass
 		{
 			Stencil {
-				Ref 255
+				Ref 1
 				Comp Equal
 			}
 		CGPROGRAM

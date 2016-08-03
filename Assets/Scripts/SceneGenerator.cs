@@ -63,7 +63,10 @@ public class SceneGenerator : MonoBehaviour {
 			1);
 		histBox.transform.position = newPos;
 		histBox.transform.localScale = newScale;
-		histBox.AddComponent<HistoryV2> ().Setup ();
+		HistoryV2 histv2 = histBox.AddComponent<HistoryV2> ();
+		histv2.Setup ();
+		// give the game manager a reference to the history manager
+		Hub.central.gm.historyManager = histv2;
 		
 		// create the outline of the puzzle, set position and scale
 		// sorting layer: semi-background

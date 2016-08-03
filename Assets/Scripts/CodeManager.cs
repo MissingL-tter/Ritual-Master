@@ -6,14 +6,16 @@ public class CodeManager {
 	// Manages the secret code and checks guesses against it,
 	// returning the number of full and partial matches.
 	
-	public int numSlots = 5;
-	public int numTypes = 3;
+	private int numSlots = 5;
+	private int numTypes = 3;
 	public int numGuesses = 0;
 	
 	private int[] secretCode;
 	
 	// make a new random code that will be stored as a member variable
-	public void GenerateCode () {
+	public void GenerateCode (int slots, int types) {
+		numSlots = slots;
+		numTypes = types;
 		secretCode = new int[numSlots];
 		for (int i = 0; i<numSlots; i++){
 			secretCode[i] = Random.Range(0,numTypes);

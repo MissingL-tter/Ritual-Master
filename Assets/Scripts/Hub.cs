@@ -4,6 +4,7 @@ using System.Collections;
 public class Hub : MonoBehaviour {
 	
 	public GameManager gm;
+	public Resources resources;
 	
 	public static Hub central;
 	
@@ -22,6 +23,12 @@ public class Hub : MonoBehaviour {
 			gm = gameObject.GetComponent<GameManager>();
 			if (!gm) {
 				Trace.Msg("Hub found no game manager!");
+			}
+		}
+		if (!resources) {
+			resources = gameObject.GetComponent<Resources> ();
+			if (!resources) {
+				Trace.Msg ("Hub found no resource manager!");
 			}
 		}
 	}

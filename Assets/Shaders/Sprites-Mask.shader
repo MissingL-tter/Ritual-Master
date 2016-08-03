@@ -15,7 +15,7 @@ Shader "Sprites/Mask"
 		ZWrite Off
 		Pass {
 			Stencil {
-				Ref 255
+				Ref 1
 				Comp Always
 				Pass Replace
 			}
