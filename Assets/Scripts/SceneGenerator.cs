@@ -31,6 +31,8 @@ public class SceneGenerator : MonoBehaviour {
 	GameObject[] itemPool;
 	public ItemSlot[] slots;
 	public ItemPool[] pools;
+
+	public GameObject lineFab;
 	
 	// private
 	private float lastAspect;
@@ -100,6 +102,37 @@ public class SceneGenerator : MonoBehaviour {
 			slots[i] = slotGo.AddComponent<ItemSlot>();
 			slots[i].slotID = i;
 			slotGo.transform.position = newPos;
+		}
+
+		//create star pattern
+		Vector2 location = new Vector2();
+		Vector2 dir = new Vector2();
+		GameObject line = new GameObject();
+		int slotMod = (int)Mathf.Round(Mathf.Sqrt(numSlots));
+		for (int i=0; i<numSlots; i++) {
+			location.x = (slots[i].transform.position.x+slots[(i+slotMod)%numSlots].transform.position.x)/2;
+			location.y = (slots[i].transform.position.y+slots[(i+slotMod)%numSlots].transform.position.y)/2;
+
+			dir = (slots[(i+slotMod)%numSlots].transform.position - slots[i].transform.position).normalized;
+
+			float rot = Mathf.Atan2(dir.y, dir.x);
+
+			line = (GameObject)Instantiate(lineFab, location, Quaternion.identity);
+
+			line.transform.Rotate(Vector3.forward, rot * Mathf.Rad2Deg);
+
+			line.transform.localScale = new Vector3(.6f, .6f, .6f);
+
+			//line.transform.rotation = rot;
+
+			//line.transform.
+
+			
+
+			
+
+			//Debug.DrawLine(slots[i].transform.position, slots[(i+2)%numSlots].transform.position, Color.red,1000,false); 
+
 		}
 		
 		// create and set pool items below puzzle circle
