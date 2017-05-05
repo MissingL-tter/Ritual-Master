@@ -58,6 +58,7 @@ public class ItemSlot : MonoBehaviour {
 	public void OnMouseDown () {
 		if (IsEmpty()) {
 			Trace.Msg("Can't pick up an item from an empty slot");
+			Debug.Log("Can't pick up an item from an empty slot");
 			return;
 		}
 		gm.ItemPickedUp(itemType,slotID);
