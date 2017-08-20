@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Props-Back
+    uniqueID: 2599372029
+    locked: 0
+  - name: UI-Back
+    uniqueID: 3263899471
+    locked: 0
+  - name: UI-Front
+    uniqueID: 1122792739
+    locked: 0
+  - name: Props-Front
+    uniqueID: 1347781173
+    locked: 0
