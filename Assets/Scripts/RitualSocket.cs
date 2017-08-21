@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class RitualSocket : MonoBehaviour {
 
-	public int resourceID = -1;
+	GameManager gameManager;
+
+	public GameObject resource;
 
 	// Use this for initialization
 	void Start () {
+
+		gameManager = GameManager.instance;
 		
 	}
 	

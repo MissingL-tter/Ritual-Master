@@ -6,10 +6,8 @@ public class PlaceSockets : MonoBehaviour {
 
 	public GameObject socket;
 	public GameObject line;
-
-	public int numSockets = 5;
-
 	public GameObject[] ritualSockets;
+	public int numSockets = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -19,12 +17,15 @@ public class PlaceSockets : MonoBehaviour {
 		// Place sockets around the circle
 		Vector2 pos;
 		Vector2 center = transform.position;
+		float angle;
 		float radius = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
 		for (int i = 0; i < numSockets; i++) {
-			float angle = (360 / numSockets) * i + 180;
+			angle = (360 / numSockets) * i;
 			pos.x = center.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
 			pos.y = center.y + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
+
 			ritualSockets[i] = Instantiate(socket, pos, Quaternion.identity);
+			ritualSockets[i].transform.parent = transform;
 		}
 
 		// Places lines between sockets to construct a star
@@ -33,11 +34,10 @@ public class PlaceSockets : MonoBehaviour {
 		for (int i = 0; i < numSockets; i++) {
 			pos.x = (ritualSockets[i].transform.position.x + ritualSockets[(i + slotMod) % numSockets].transform.position.x) / 2;
 			pos.y = (ritualSockets[i].transform.position.y + ritualSockets[(i + slotMod) % numSockets].transform.position.y) / 2;
-
 			dir = (ritualSockets[(i + slotMod) % numSockets].transform.position - ritualSockets[i].transform.position).normalized;
+			angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-			float rot = Mathf.Atan2(dir.y, dir.x);
-			Instantiate(line, pos, Quaternion.Euler(0, 0, rot * Mathf.Rad2Deg));
+			Instantiate(line, pos, Quaternion.Euler(0, 0,angle)).transform.parent = ritualSockets[i].transform;
 		}
 
 	}
