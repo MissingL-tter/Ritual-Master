@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4881465719553420}
   - component: {fileID: 212064273909354818}
+  - component: {fileID: 58046158606474154}
+  - component: {fileID: 114665906289107688}
   m_Layer: 0
   m_Name: RitualResource_2
   m_TagString: Untagged
@@ -34,12 +36,39 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295348667021368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.835968, y: -4.342759, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58046158606474154
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1295348667021368}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &114665906289107688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1295348667021368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba446886f906aa499ab02617cbdbec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: -1
 --- !u!212 &212064273909354818
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -69,8 +98,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 853263309
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300016, guid: 8809ea8bfd3e45f4c918383a1a3f1979, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

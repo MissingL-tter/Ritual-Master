@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Socket
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - RitualSocket
+  - ResourceSocket
   - 
   - 
   - 
@@ -44,12 +45,15 @@ TagManager:
   - name: Props-Back
     uniqueID: 2599372029
     locked: 0
+  - name: Props-Front
+    uniqueID: 1347781173
+    locked: 0
   - name: UI-Back
     uniqueID: 3263899471
     locked: 0
   - name: UI-Front
     uniqueID: 1122792739
     locked: 0
-  - name: Props-Front
-    uniqueID: 1347781173
+  - name: UI-Interactive
+    uniqueID: 853263309
     locked: 0

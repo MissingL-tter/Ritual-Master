@@ -14,6 +14,7 @@ public class ResourceSocket : MonoBehaviour {
 
 		gameManager = GameManager.instance;
 		
+		// Load a resource into the socket
 		resource = Instantiate(gameManager.GetResourceSprite(resourceId));
 		resource.transform.position = transform.position;
 		resource.transform.parent = transform;
@@ -23,12 +24,20 @@ public class ResourceSocket : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		// If this socket has no resource and we are not holding it, create a new resource
-		if (resource == null && gameManager.heldResource == null) {
+		// If this socket has no resource and we are not holding one, create a new resource
+		if (resource == null && !gameManager.hasResource) {
 			resource = Instantiate(GameManager.instance.GetResourceSprite(resourceId));
-			resource.transform.position = gameObject.transform.position;
-			resource.transform.parent = gameObject.transform;
+			resource.transform.position = transform.position;
+			resource.transform.parent = transform;
 		}
 
 	}
+
+	// Remove the resource currently in the socket
+	public void RemoveResource () {
+		gameManager.hasResource = true;
+		resource.transform.parent = null;
+		resource = null;
+	}
+
 }

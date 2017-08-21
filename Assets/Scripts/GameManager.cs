@@ -16,11 +16,11 @@ public class GameManager : MonoBehaviour {
 		}
 		
 		DontDestroyOnLoad(gameObject);
-		
+
 	}
 
 	public GameObject[] resourceSprites;
-	public GameObject heldResource;
+	public bool hasResource = false;
 
 	// Use this for initialization
 	void Start () {

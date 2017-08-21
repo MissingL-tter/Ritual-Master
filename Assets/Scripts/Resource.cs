@@ -9,13 +9,14 @@ public class Resource : MonoBehaviour {
 	ResourceSocket resourceSocket;
 	RitualSocket ritualSocket;
 
-	public int resourceId = -1;
+	public int id = -1;
 
 	// Use this for initialization
 	void Start () {
 
 		gameManager = GameManager.instance;
 
+		// Try to get both sockets, only one will return and the other will be null
 		resourceSocket = gameObject.transform.parent.GetComponent<ResourceSocket>();
 		ritualSocket = gameObject.transform.parent.GetComponent<RitualSocket>();
 
@@ -23,43 +24,32 @@ public class Resource : MonoBehaviour {
 
 	void OnMouseDown () {
 
-		gameManager.heldResource = gameObject;
+		// Remove the resource from its socket
 		if (ritualSocket != null) {
-			ritualSocket.resource = null;
-			ritualSocket = null;
+			ritualSocket.RemoveResource();
 		} else {
-			resourceSocket.resource = null;
-			resourceSocket = null;
+			resourceSocket.RemoveResource();
 		}
-		transform.parent = null;
 
 	}
 
 	void OnMouseDrag() {
 
+		// When the pointer is moved, move the resource with it
 		transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 	}
 
 	void OnMouseUp () {
 
-		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("Socket"));
+		// Raycast only for RitualSockets, if we find a socket then give the this resource to that socket
+		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("RitualSocket"));
         if (hit.collider != null) {
 			ritualSocket = hit.collider.GetComponent<RitualSocket>();
-		}
-
-		gameManager.heldResource = null;
-		if (ritualSocket != null) {
-			if (ritualSocket.resource != null) {
-				Destroy(ritualSocket.transform.GetChild(1).gameObject);
-			}
-			ritualSocket.resource = gameObject;
-			transform.position = ritualSocket.transform.position;
-			transform.parent = ritualSocket.transform;
-			gameManager.heldResource = null;
+			ritualSocket.TakeResource(gameObject);
 		} else {
+			gameManager.hasResource = false;
 			Destroy(gameObject);
-			gameManager.heldResource = null;
 		}
 
 	}
