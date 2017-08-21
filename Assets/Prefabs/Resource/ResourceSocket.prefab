@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212545377417763310}
   - component: {fileID: 114788477812717274}
   - component: {fileID: 58433036488396724}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ResourceSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}

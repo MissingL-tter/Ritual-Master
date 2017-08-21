@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 
+	public GameObject[] resourceSprites;
+
 	//Awake is always called before any Start functions
 	void Awake() {
 
@@ -19,9 +21,6 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public GameObject[] resourceSprites;
-	public bool hasResource = false;
-
 	// Use this for initialization
 	void Start () {
 
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public GameObject GetResourceSprite (int resourceId) {
+	public GameObject GetResource (int resourceId) {
 		if (resourceId >= 0) {
 			return resourceSprites[resourceId];
 		} else {

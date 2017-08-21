@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Resource : MonoBehaviour {
+public class RitualManager : MonoBehaviour {
 
-	public int id = -1;
+	public GameObject[] ritualSockets;
 
 	// Use this for initialization
 	void Start () {
-
+		
 	}
-
+	
+	// Update is called once per frame
 	void Update () {
-
+		
 	}
-
 }

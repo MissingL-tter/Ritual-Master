@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212489108996032082}
   - component: {fileID: 58510036894617456}
   - component: {fileID: 114378239671299156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RitualResource_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba446886f906aa499ab02617cbdbec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: -1
+  id: 1
 --- !u!212 &212489108996032082
 SpriteRenderer:
   m_ObjectHideFlags: 1

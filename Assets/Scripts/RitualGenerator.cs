@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceSockets : MonoBehaviour {
+public class RitualGenerator : MonoBehaviour {
 
 	public GameObject socket;
 	public GameObject line;
@@ -37,8 +37,10 @@ public class PlaceSockets : MonoBehaviour {
 			dir = (ritualSockets[(i + slotMod) % numSockets].transform.position - ritualSockets[i].transform.position).normalized;
 			angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-			Instantiate(line, pos, Quaternion.Euler(0, 0,angle)).transform.parent = ritualSockets[i].transform;
+			Instantiate(line, pos, Quaternion.Euler(0, 0,angle)).transform.parent = gameObject.transform;
 		}
+
+		gameObject.GetComponent<RitualManager>().ritualSockets = ritualSockets;
 
 	}
 	
