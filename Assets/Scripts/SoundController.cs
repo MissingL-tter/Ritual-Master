@@ -4,7 +4,8 @@ using System.Collections;
 public class SoundController : MonoBehaviour {
 
 	private AudioSource audioSource;
-	//public AudioClip sample;
+	public AudioClip pickupPiece;
+	public AudioClip putdownPiece;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,11 @@ public class SoundController : MonoBehaviour {
 	
 	}
 	
-	public void PlayDogBarkSound () {
-        //audioSource.PlayOneShot(sample, 0.55f);
+	public void PlayPickUpPiece () {
+        audioSource.PlayOneShot(pickupPiece, 0.55f);
+    }
+
+    public void PlayPutdownPiece () {
+        audioSource.PlayOneShot(putdownPiece, 0.55f);
     }
 }
