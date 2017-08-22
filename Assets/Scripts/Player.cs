@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public static Player instance;
-
 	public GameObject heldResource;
 
 	//Awake is always called before any Start functions
@@ -56,6 +55,7 @@ public class Player : MonoBehaviour {
     void TakeResource(GameObject resource) {
         heldResource = resource;
         heldResource.transform.position = Input.mousePosition;
+		heldResource.transform.parent.GetComponent<Socket>().resource = null;
         heldResource.transform.parent = null;
     }
 

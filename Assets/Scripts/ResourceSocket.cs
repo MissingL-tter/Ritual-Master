@@ -24,11 +24,6 @@ public class ResourceSocket : Socket {
 	
 	// Update is called once per frame
 	void Update () {
-
-		// If we have no children, then we should have no resource
-		if (transform.childCount == 0) {
-			resource = null;
-		}
 		
 		// If this socket has no resource and we are not holding one, create a new resource
 		if (resource == null && player.heldResource == null) {
