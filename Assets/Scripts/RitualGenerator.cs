@@ -20,7 +20,7 @@ public class RitualGenerator : MonoBehaviour {
         float angle;
         float radius = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
         for (int i = 0; i < numSockets; i++) {
-            angle = (360 / numSockets) * i;
+            angle = (360f / numSockets) * i + 180f;
             pos.x = center.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
             pos.y = center.y + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
 
