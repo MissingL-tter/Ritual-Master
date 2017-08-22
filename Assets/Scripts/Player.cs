@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
 
 		if (heldResource != null) {
 			// Move the resource with the pointer
-			heldResource.transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			heldResource.transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector2(-.25f, .25f);
 		}
 
 		if (Input.GetMouseButtonUp(0) && heldResource != null) {
