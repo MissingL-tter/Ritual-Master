@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Resource : MonoBehaviour {
 
-	public int id = -1;
+    public int id = -1;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
-	}
+    }
 
-	void Update () {
+    void Update () {
 
-	}
+    }
 
 }
