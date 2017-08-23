@@ -447,7 +447,7 @@ Prefab:
     - target: {fileID: 114533362121262602, guid: 369312a7f4549bc429122b0dc1b14a12,
         type: 2}
       propertyPath: numSockets
-      value: 5
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 369312a7f4549bc429122b0dc1b14a12, type: 2}
