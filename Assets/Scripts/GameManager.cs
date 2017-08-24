@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
-    public GameObject[] resourceSprites;
+    public GameObject[] resourceTypes;
 
     //Awake is always called before any Start functions
     void Awake () {
@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour {
 
     public GameObject GetResource (int resourceId) {
         if (resourceId >= 0) {
-            return resourceSprites[resourceId];
+            return resourceTypes[resourceId];
         } else {
-            Debug.Log("Tried to load sprite of resource type '-1'");
+            Debug.Log("Tried to get resource of type '-1'");
             return null;
         }
     }

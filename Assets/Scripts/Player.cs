@@ -28,10 +28,13 @@ public class Player : MonoBehaviour {
     void Update () {
 
         if (Input.GetMouseButtonDown(0)) {
+
+            
+            RaycastHit2D hitResource = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("Resource"));
+
             // Remove the resource from its socket
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("Resource"));
-            if (hit) {
-                TakeResource(hit.collider.gameObject);
+            if (hitResource) {
+                TakeResource(hitResource.collider.gameObject);
                 AudioPlayer.PlayPickUpPiece();
             }
         }
@@ -52,7 +55,6 @@ public class Player : MonoBehaviour {
                 heldResource = null;
             }
         }
-
     }
 
     void TakeResource (GameObject resource) {

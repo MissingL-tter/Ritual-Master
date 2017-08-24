@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class RitualGenerator : MonoBehaviour {
 
+    GameManager gameManager;
+
     public GameObject socket;
     public GameObject line;
     public GameObject[] ritualSockets;
     public int numSockets = 5;
+    public int[] solution;
 
     // Use this for initialization
     void Start () {
 
+        gameManager = GameManager.instance;
+
         ritualSockets = new GameObject[numSockets];
+        solution = new int[numSockets];
 
         // Place sockets around the circle
         Vector2 pos;
@@ -40,7 +46,10 @@ public class RitualGenerator : MonoBehaviour {
             Instantiate(line, pos, Quaternion.Euler(0, 0, angle)).transform.parent = gameObject.transform;
         }
 
-        gameObject.GetComponent<RitualManager>().ritualSockets = ritualSockets;
+        // Generate solution
+		for (int i = 0; i < solution.Length; i++){
+			solution[i] = Random.Range(0, gameManager.resourceTypes.Length);
+		}
 
     }
 
