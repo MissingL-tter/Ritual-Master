@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RitualPerform : MonoBehaviour {
+public class RitualPerform : MonoBehaviour, IButton {
 
-	void OnMouseDown() {
+	public void OnClick() {
 		transform.parent.GetComponent<RitualManager>().EvaluateGuess();
 	}
 

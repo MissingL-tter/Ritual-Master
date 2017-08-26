@@ -33,7 +33,8 @@ public class Player : MonoBehaviour {
             RaycastHit2D hitResource = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("Resource"));
 
             if (hitUI) {
-                //hitUI.collider.GetComponent<
+                IButton button = hitUI.collider.GetComponent(typeof(IButton)) as IButton;
+                button.OnClick();
             }
 
             // Remove the resource from its socket

@@ -21,7 +21,7 @@ public class RitualManager : MonoBehaviour {
     // return number of full and partial matches
     public int[] EvaluateGuess () {
 
-        resources = transform.parent.GetComponentsInChildren<Resource>();
+        resources = transform.GetComponentsInChildren<Resource>();
         solution = ritualGenerator.solution.Clone() as int[];
         guess = new int[solution.Length];
         for (int i = 0; i < guess.Length; i++) {
@@ -48,6 +48,9 @@ public class RitualManager : MonoBehaviour {
                 }
             }
         }
+
+        Debug.Log("Full Matches: " + fullMatches);
+        Debug.Log("Partial Matches: " + partialMatches);
 
         return new int[] {fullMatches, partialMatches};
     }
