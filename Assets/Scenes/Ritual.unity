@@ -258,7 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0e9c90a0bcd0140959a4fa8778585a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceTypes: []
+  resourceTypes:
+  - {fileID: 1201548129624046, guid: e84c6517af4c0ab45aeb2eb1ceb66fcb, type: 2}
+  - {fileID: 1314158538529626, guid: cbb47a24f634ccb46992c88a437f80b0, type: 2}
+  - {fileID: 1295348667021368, guid: 732a7f29dc6aca64da722a28a622742d, type: 2}
 --- !u!4 &160219376
 Transform:
   m_ObjectHideFlags: 0
@@ -283,7 +286,7 @@ GameObject:
   - component: {fileID: 208271655}
   - component: {fileID: 208271658}
   - component: {fileID: 208271657}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SubmitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
