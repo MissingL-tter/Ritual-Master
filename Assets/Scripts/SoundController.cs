@@ -3,25 +3,15 @@ using System.Collections;
 
 public class SoundController : MonoBehaviour {
 
-    private AudioSource audioSource;
-    public AudioClip pickupPiece;
-    public AudioClip putdownPiece;
-
-    // Use this for initialization
-    void Start () {
-        audioSource = GetComponent<AudioSource>();
-    }
-    
-    // Update is called once per frame
-    void Update () {
-    
-    }
+    public AudioSource backgroundAudio;
+    public AudioSource pickupAudio;
+    public AudioSource putdownAudio;
     
     public void PlayPickUpPiece () {
-        audioSource.PlayOneShot(pickupPiece, 0.55f);
+        pickupAudio.Play();
     }
 
     public void PlayPutdownPiece () {
-        audioSource.PlayOneShot(putdownPiece, 0.55f);
+        putdownAudio.Play();
     }
 }

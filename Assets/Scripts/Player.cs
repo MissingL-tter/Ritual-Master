@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
     public GameObject heldResource;
-    public SoundController AudioPlayer;
+    public SoundController soundController;
 
     //Awake is always called before any Start functions
     void Awake () {
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
             // Remove the resource from its socket
             if (hitResource) {
                 TakeResource(hitResource.collider.gameObject);
-                AudioPlayer.PlayPickUpPiece();
+                soundController.PlayPickUpPiece();
             }
         }
 
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("RitualSocket"));
             if (hit) {
                 DropResourceInto(hit.collider.GetComponent<Socket>());
-                AudioPlayer.PlayPutdownPiece();
+                soundController.PlayPutdownPiece();
             } else {
                 Destroy(heldResource);
                 heldResource = null;
