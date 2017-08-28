@@ -66,7 +66,7 @@ public class Player : MonoBehaviour {
         heldResource = resource;
         heldResource.transform.position = Input.mousePosition;
         heldResource.transform.parent.GetComponent<Socket>().resource = null;
-        heldResource.transform.parent = null;
+        heldResource.transform.parent = transform;
     }
 
     void DropResourceInto (Socket socket) {

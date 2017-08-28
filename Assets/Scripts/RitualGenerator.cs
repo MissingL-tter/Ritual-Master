@@ -17,8 +17,8 @@ public class RitualGenerator : MonoBehaviour {
 
         gameManager = GameManager.instance;
 
+        // Create Array of Sockets
         ritualSockets = new GameObject[numSockets];
-        solution = new int[numSockets];
 
         // Place sockets around the circle
         Vector2 pos;
@@ -46,10 +46,14 @@ public class RitualGenerator : MonoBehaviour {
             Instantiate(line, pos, Quaternion.Euler(0, 0, angle)).transform.parent = gameObject.transform;
         }
 
-        // Generate solution
-		for (int i = 0; i < solution.Length; i++){
-			solution[i] = Random.Range(0, gameManager.resourceTypes.Length);
-		}
+        // If no solution exists then generate a new one
+        if (solution.Length == 0) {
+            solution = new int[numSockets];
+            for (int i = 0; i < solution.Length; i++){
+                solution[i] = Random.Range(0, gameManager.resourceTypes.Length);
+            }
+            GetComponent<RitualManager>().solution = solution;
+        }
 
     }
 
