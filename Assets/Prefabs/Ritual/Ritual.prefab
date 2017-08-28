@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578973265934558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +55,8 @@ MonoBehaviour:
   socket: {fileID: 1286738170138494, guid: e6810ab80563a1c478595504ce9d99a1, type: 2}
   line: {fileID: 1999358847057144, guid: 4849c5ae8b0f7a343adead9130cfe14d, type: 2}
   ritualSockets: []
-  numSockets: 4
+  numSockets: 0
+  solution: 
 --- !u!212 &212433359306879260
 SpriteRenderer:
   m_ObjectHideFlags: 1

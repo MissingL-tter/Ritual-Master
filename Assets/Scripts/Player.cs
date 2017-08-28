@@ -5,8 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public static Player instance;
+    GameManager gameManager;
+    SoundController soundController;
+
     public GameObject heldResource;
-    public SoundController soundController;
 
     //Awake is always called before any Start functions
     void Awake () {
@@ -16,12 +18,12 @@ public class Player : MonoBehaviour {
         } else if (instance != this) {
             Destroy(gameObject);
         }
-
     }
 
     // Use this for initialization
     void Start () {
-        
+        gameManager = GameManager.instance;
+        soundController = gameManager.soundController;
     }
 
     // Update is called once per frame
@@ -29,13 +31,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0)) {
 
-            RaycastHit2D hitUI = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("UI"));
             RaycastHit2D hitResource = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("Resource"));
-
-            if (hitUI) {
-                IButton button = hitUI.collider.GetComponent(typeof(IButton)) as IButton;
-                button.OnClick();
-            }
 
             // Remove the resource from its socket
             if (hitResource) {
@@ -44,21 +40,24 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (heldResource != null) {
-            // Move the resource with the pointer
-            heldResource.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector2(-.25f, .25f);
+        if (Input.GetMouseButtonUp(0)) {
+
+            if (heldResource != null) {
+                // Raycast only for RitualSockets, if we find a socket then give the this resource to that socket otherwise destroy it
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("RitualSocket"));
+                if (hit) {
+                    DropResourceInto(hit.collider.GetComponent<Socket>());
+                    soundController.PlayPutdownPiece();
+                } else {
+                    Destroy(heldResource);
+                    heldResource = null;
+                }
+            }
         }
 
-        if (Input.GetMouseButtonUp(0) && heldResource != null) {
-            // Raycast only for RitualSockets, if we find a socket then give the this resource to that socket
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 100, LayerMask.GetMask("RitualSocket"));
-            if (hit) {
-                DropResourceInto(hit.collider.GetComponent<Socket>());
-                soundController.PlayPutdownPiece();
-            } else {
-                Destroy(heldResource);
-                heldResource = null;
-            }
+        // Move the resource with the pointer
+        if (heldResource != null) {
+            heldResource.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector2(-.25f, .25f);
         }
     }
 
@@ -78,4 +77,5 @@ public class Player : MonoBehaviour {
         heldResource.transform.parent = socket.transform;
         heldResource = null;
     }
+    
 }

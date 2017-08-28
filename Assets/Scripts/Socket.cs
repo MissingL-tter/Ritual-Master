@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class Socket : MonoBehaviour {
 
-    public GameObject resource {get; set;}
+    public GameObject resource;
     
 }

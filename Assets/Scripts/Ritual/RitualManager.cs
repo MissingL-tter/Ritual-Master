@@ -12,7 +12,9 @@ public class RitualManager : MonoBehaviour {
     int visited;
 
     void Start () {
+
         gameManager = GameManager.instance;
+
         visited = gameManager.resourceTypes.Length;
         ritualGenerator = GetComponent<RitualGenerator>();
     }
@@ -21,7 +23,6 @@ public class RitualManager : MonoBehaviour {
 
         // Get resources that have been added to the ritual
         resources = transform.GetComponentsInChildren<Resource>();
-
     }
     
     // check guess against solution,

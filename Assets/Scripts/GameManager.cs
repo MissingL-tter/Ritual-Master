@@ -1,32 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public SoundController soundController;
 
+    [Header("Resources")]
     public GameObject[] resourceTypes;
 
-    //Awake is always called before any Start functions
+    [Header("Level")]
+    public int currentLevel;
+    public LevelData levelData;
+
+    // Awake is always called before any Start functions
     void Awake () {
 
         if (instance == null) {
+            DontDestroyOnLoad(gameObject);
             instance = this;
         } else if (instance != this) {
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        if (!PlayerPrefs.HasKey("CurrentLevel")) {
+            PlayerPrefs.SetInt("CurrentLevel", 0);
+        }
+
+        string levelDataAsJson = File.ReadAllText(Application.streamingAssetsPath + "/LevelData.json");
+		levelData = JsonUtility.FromJson<LevelData>(levelDataAsJson);
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel");
 
     }
 
-    // Use this for initialization
     void Start () {
 
     }
 
-    // Update is called once per frame
     void Update () {
 
     }
@@ -39,4 +51,5 @@ public class GameManager : MonoBehaviour {
             return null;
         }
     }
+
 }

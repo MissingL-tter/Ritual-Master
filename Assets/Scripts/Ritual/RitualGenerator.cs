@@ -12,7 +12,6 @@ public class RitualGenerator : MonoBehaviour {
     public int numSockets = 5;
     public int[] solution;
 
-    // Use this for initialization
     void Start () {
 
         gameManager = GameManager.instance;
@@ -54,11 +53,10 @@ public class RitualGenerator : MonoBehaviour {
             }
             GetComponent<RitualManager>().solution = solution;
         }
-
     }
 
-    // Update is called once per frame
     void Update () {
 
     }
+
 }

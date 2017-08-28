@@ -9,7 +9,6 @@ public class ResourceSocket : Socket {
 
     public int resourceId = -1;
 
-    // Use this for initialization
     void Start () {
 
         gameManager = GameManager.instance;
@@ -19,19 +18,15 @@ public class ResourceSocket : Socket {
         resource = Instantiate(gameManager.GetResource(resourceId));
         resource.transform.position = transform.position;
         resource.transform.parent = transform;
-
     }
 
-    // Update is called once per frame
     void Update () {
 
         // If this socket has no resource and we are not holding one, create a new resource
         if (resource == null && player.heldResource == null) {
-            resource = Instantiate(GameManager.instance.GetResource(resourceId));
+            resource = Instantiate(gameManager.GetResource(resourceId));
             resource.transform.position = transform.position;
             resource.transform.parent = transform;
         }
-
     }
-
 }
