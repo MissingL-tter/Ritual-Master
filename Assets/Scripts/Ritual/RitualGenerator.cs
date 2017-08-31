@@ -55,11 +55,12 @@ public class RitualGenerator : MonoBehaviour {
             angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
             GameObject line = Instantiate(linePrefab, pos, Quaternion.Euler(0, 0, angle));
-            line.transform.localScale = new Vector3(dist/lineLength, 1, 1);
+            line.transform.localScale = new Vector3(dist / lineLength, 1, 1);
             line.transform.parent = gameObject.transform;
         }
 
         // If no solution exists then generate a new one
+        // This is only here if we decide to clone the ritual for history, if we manage history another way this check wont be necessary
         if (solution.Length == 0) {
             solution = new int[numSockets];
             for (int i = 0; i < solution.Length; i++){
