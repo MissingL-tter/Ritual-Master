@@ -57,13 +57,14 @@ public class Player : MonoBehaviour {
 
         // Move the resource with the pointer
         if (heldResource != null) {
-            heldResource.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector2(-.25f, .25f);
+            // Lerp will suffice for touch input with a drag and drop
+            heldResource.transform.position = Vector2.Lerp((Vector2) heldResource.transform.position, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), .25f);
         }
     }
 
     void TakeResource (GameObject resource) {
         heldResource = resource;
-        heldResource.transform.position = Input.mousePosition;
+        heldResource.GetComponent<SpriteRenderer>().sortingOrder = 1;
         heldResource.transform.parent.GetComponent<Socket>().resource = null;
         heldResource.transform.parent = transform;
     }
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour {
             Destroy(socket.resource);
         }
         socket.resource = heldResource;
+        socket.resource.GetComponent<SpriteRenderer>().sortingOrder = 0;
         heldResource.transform.position = socket.transform.position;
         heldResource.transform.parent = socket.transform;
         heldResource = null;

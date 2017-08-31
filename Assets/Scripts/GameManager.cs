@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
     public int currentLevel;
     public LevelData levelData;
 
+    private string filePath;
+
     void Awake () {
 
         if (instance == null) {
@@ -26,14 +28,22 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        filePath = Path.Combine(Application.streamingAssetsPath, "LevelData.json");
+
+        if (Application.platform == RuntimePlatform.Android) {
+            WWW www = new WWW(filePath);
+            while(!www.isDone);
+            string levelDataAsJson = www.text;
+		    levelData = JsonUtility.FromJson<LevelData>(levelDataAsJson);
+        } else {
+            string levelDataAsJson = File.ReadAllText(filePath);
+		    levelData = JsonUtility.FromJson<LevelData>(levelDataAsJson);
+        }
+
         if (!PlayerPrefs.HasKey("CurrentLevel")) {
             PlayerPrefs.SetInt("CurrentLevel", 0);
         }
-
-        string levelDataAsJson = File.ReadAllText(Application.streamingAssetsPath + "/LevelData.json");
-		levelData = JsonUtility.FromJson<LevelData>(levelDataAsJson);
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
-
     }
 
     void Start () {

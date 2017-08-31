@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8809ea8bfd3e45f4c918383a1a3f1979
-timeCreated: 1503300964
+timeCreated: 1504166524
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,9 +10,9 @@ TextureImporter:
     21300006: ritualResource_0
     21300008: ritualResource_1
     21300010: ritualResource_2
-    21300012: RitualResource_0
-    21300014: RitualResource_1
-    21300016: RitualResource_2
+    21300012: Coin
+    21300014: Incense
+    21300016: Blood
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -54,7 +54,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -92,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RitualResource_0
+      name: Coin
       rect:
         serializedVersion: 2
         x: 0
@@ -100,13 +100,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: RitualResource_1
+      name: Incense
       rect:
         serializedVersion: 2
         x: 128
@@ -114,13 +114,13 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: RitualResource_2
+      name: Blood
       rect:
         serializedVersion: 2
         x: 256
@@ -128,7 +128,7 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
