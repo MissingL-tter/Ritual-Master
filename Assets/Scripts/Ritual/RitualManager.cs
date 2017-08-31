@@ -29,6 +29,8 @@ public class RitualManager : MonoBehaviour {
     // return number of full and partial matches
     public int[] EvaluateGuess () {
 
+        solution = ritualGenerator.solution.Clone() as int[];
+
         int fullMatches = 0;
         int partialMatches = 0;
 

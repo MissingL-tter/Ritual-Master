@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4756559791256962}
   - component: {fileID: 212433359306879260}
   - component: {fileID: 114533362121262602}
+  - component: {fileID: 114448691723004976}
   m_Layer: 0
   m_Name: Ritual
-  m_TagString: Untagged
+  m_TagString: Ritual
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,12 +36,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578973265934558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114448691723004976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578973265934558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6852349cfa18544784a0a23c8ba29ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources: []
+  guess: 
+  solution: 
 --- !u!114 &114533362121262602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,10 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d55df91d11b0544a10ee0267abcfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socket: {fileID: 1286738170138494, guid: e6810ab80563a1c478595504ce9d99a1, type: 2}
-  line: {fileID: 1999358847057144, guid: 4849c5ae8b0f7a343adead9130cfe14d, type: 2}
+  ritualSocketPrefab: {fileID: 1286738170138494, guid: e6810ab80563a1c478595504ce9d99a1,
+    type: 2}
+  linePrefab: {fileID: 1999358847057144, guid: 4849c5ae8b0f7a343adead9130cfe14d, type: 2}
   ritualSockets: []
-  numSockets: 0
+  numSockets: 5
   solution: 
 --- !u!212 &212433359306879260
 SpriteRenderer:

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RitualPerform : MonoBehaviour {
+public class RitualNext : MonoBehaviour {
 
 	GameManager gameManager;
 
-    void Start () {
+	void Start () {
 		gameManager = GameManager.instance;
 	}
 
 	void OnMouseDown () {
-		gameManager.AttemptRitual();
+		gameManager.LoadNextLevel();
 	}
 
 }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
     public SoundController soundController;
+    public GameObject ritual;
 
     [Header("Resources")]
     public GameObject[] resourceTypes;
@@ -15,7 +17,6 @@ public class GameManager : MonoBehaviour {
     public int currentLevel;
     public LevelData levelData;
 
-    // Awake is always called before any Start functions
     void Awake () {
 
         if (instance == null) {
@@ -36,11 +37,21 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start () {
-
+        ritual = GameObject.FindWithTag("Ritual");
     }
 
     void Update () {
 
+    }
+
+    public void AttemptRitual () {
+        int[] results = ritual.GetComponent<RitualManager>().EvaluateGuess();
+    }
+
+    public void LoadNextLevel () {
+        currentLevel += 1;
+        SceneManager.LoadScene("Ritual");
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel);
     }
 
     public GameObject GetResource (int resourceId) {
