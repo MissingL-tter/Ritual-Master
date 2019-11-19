@@ -1,2 +1,2 @@
 # Ritual-Master
-Mobile game currently in development in Unity 3D
+Mobile game prototype built from our Global Game Jam entry. Developed using Unity 3D.
